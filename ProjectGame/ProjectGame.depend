@@ -3,11 +3,11 @@
 
 1626095469 source:c:\users\pbeet\desktop\faculdade\algoritmos\projectgame\projectgame\pilhajoao.c
 
-1626525380 source:c:\users\pbeet\desktop\faculdade\algoritmos\projectgame\projectgame\main.c
+1626702512 source:c:\users\pbeet\desktop\faculdade\algoritmos\projectgame\projectgame\main.c
 	<stdlib.h>
 	<stdio.h>
 	<locale.h>
-	"FilaDecks.h"
+	"ListaDeck.h"
 
 1626527335 source:c:\users\pbeet\desktop\faculdade\algoritmos\projectgame\projectgame\filadecks.c
 	<stdio.h>
@@ -15,4 +15,11 @@
 	"FilaDecks.h"
 
 1626527344 c:\users\pbeet\desktop\faculdade\algoritmos\projectgame\projectgame\filadecks.h
+
+1626701167 source:c:\users\pbeet\desktop\faculdade\algoritmos\projectgame\projectgame\listadeck.c
+	<stdio.h>
+	<stdlib.h>
+	"ListaDeck.h"
+
+1626700992 c:\users\pbeet\desktop\faculdade\algoritmos\projectgame\projectgame\listadeck.h
 

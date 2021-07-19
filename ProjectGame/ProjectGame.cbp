@@ -31,10 +31,10 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
-		<Unit filename="FilaDecks.c">
+		<Unit filename="ListaDeck.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="FilaDecks.h" />
+		<Unit filename="ListaDeck.h" />
 		<Unit filename="PilhaJoao.c">
 			<Option compilerVar="CC" />
 		</Unit>
