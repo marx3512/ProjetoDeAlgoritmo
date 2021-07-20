@@ -3,10 +3,11 @@
 
 1626095469 source:c:\users\pbeet\desktop\faculdade\algoritmos\projectgame\projectgame\pilhajoao.c
 
-1626725213 source:c:\users\pbeet\desktop\faculdade\algoritmos\projectgame\projectgame\main.c
+1626798813 source:c:\users\pbeet\desktop\faculdade\algoritmos\projectgame\projectgame\main.c
 	<stdlib.h>
 	<stdio.h>
 	<locale.h>
+	<string.h>
 	<time.h>
 	"ListaDeck.h"
 
@@ -22,5 +23,5 @@
 	<stdlib.h>
 	"ListaDeck.h"
 
-1626700992 c:\users\pbeet\desktop\faculdade\algoritmos\projectgame\projectgame\listadeck.h
+1626798812 c:\users\pbeet\desktop\faculdade\algoritmos\projectgame\projectgame\listadeck.h
 
