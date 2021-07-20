@@ -21,8 +21,8 @@ void MostrarDeck(Lista *deck1, Lista *deck2){
     struct carta pegarCarta;
     while(pos < tamanho(deck1) || pos < tamanho(deck2)){
         int cond1 = acessarIndice(deck1,pos,&pegarCarta);
-        int cond2 = acessarIndice(deck2,pos,&pegarCarta);
         if (cond1 == 1) printf("|  %d  |  ", pegarCarta.num);
+        int cond2 = acessarIndice(deck2,pos,&pegarCarta);
         if (cond2 == 1) printf("  |  %d  | \n", pegarCarta.num);
         pos++;
     }
