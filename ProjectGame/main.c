@@ -5,73 +5,113 @@
 #include <time.h>
 #include "ListaDeck.h"
 
-struct carta ChecarCartaCriada(int num){
+struct carta ChecarCartaCriada(int num,int *Feijao,int *Ganso,int *Ovo,int *Harpa,int *Fii,int *Foo,int *Fuu,int *Faa){
+    int cond = 0,numeroGerado = num;
     struct carta nova;
-    if(num >= 1 && num <= 9){
-        strcpy(nova.nome,"F *");
-        nova.num = num;
-        return nova;
+    while(cond != 1){
+            if(numeroGerado >= 1 && numeroGerado <= 9 && *(Feijao) <= 35){
+            strcpy(nova.nome,"F *");
+            nova.num = numeroGerado;
+            *Feijao += 1;
+            printf("Quantidade Feijão: %d \n", *Feijao);
+            cond = 1;
+            return nova;
+        }
+        if(numeroGerado == 0 && *(Fii) <= 1){
+            strcpy(nova.nome,"FII");
+            nova.num = numeroGerado;
+            *Fii += 1;
+            printf("Quantidade Fii: %d \n", *Fii);
+            cond = 1;
+            return nova;
+        }
+        if(numeroGerado == 10 && *(Faa) <= 1){
+            strcpy(nova.nome,"FAA");
+            nova.num = numeroGerado;
+            *Faa += 1;
+            printf("Quantidade Faa: %d \n", *Faa);
+            cond = 1;
+            return nova;
+        }
+        if(numeroGerado == 11 && *(Foo) <= 1){
+            strcpy(nova.nome,"FOO");
+            nova.num = numeroGerado;
+            *Foo += 1;
+            printf("Quantidade Foo: %d \n", *Foo);
+            cond = 1;
+            return nova;
+        }
+        if(numeroGerado == 12 && *(Fuu) <= 1){
+            strcpy(nova.nome,"FUU");
+            nova.num = numeroGerado;
+            *Fuu += 1;
+            printf("Quantidade Fuu: %d \n", *Fuu);
+            cond = 1;
+            return nova;
+        }
+        if(numeroGerado == 13 && *(Ganso) <= 1){
+            strcpy(nova.nome,"Ganso");
+            nova.num = numeroGerado;
+            *Ganso += 1;
+            printf("Quantidade Ganso: %d \n", *Ganso);
+            cond = 1;
+            return nova;
+        }
+        if(numeroGerado == 14 && *(Harpa) <= 1){
+            strcpy(nova.nome,"Harpa");
+            nova.num = numeroGerado;
+            *Harpa += 1;
+            printf("Quantidade Harpa: %d \n", *Harpa);
+            cond = 1;
+            return nova;
+        }
+        if(numeroGerado == 15 && *(Ovo) <= 1){
+            strcpy(nova.nome,"Ovo");
+            nova.num = numeroGerado;
+            *Ovo += 1;
+            printf("Quantidade Ovo: %d \n", *Ovo);
+            cond = 1;
+            return nova;
+        }
+        numeroGerado = rand()%16;
     }
-    if(num == 0){
-        strcpy(nova.nome,"FII");
-        nova.num = NULL;
-        return nova;
-    }
-    if(num == 10){
-        strcpy(nova.nome,"FAA");
-        nova.num = NULL;
-        return nova;
-    }
-    if(num == 11){
-        strcpy(nova.nome,"FOO");
-        nova.num = NULL;
-        return nova;
-    }
-    if(num == 12){
-        strcpy(nova.nome,"FUU");
-        nova.num = NULL;
-        return nova;
-    }
-    if(num == 13){
-        strcpy(nova.nome,"Ganso");
-        nova.num = num;
-        return nova;
-    }
-    if(num == 14){
-        strcpy(nova.nome,"Harpa");
-        nova.num = num;
-        return nova;
-    }
-    if(num == 15){
-        strcpy(nova.nome,"Ovo");
-        nova.num = num;
-        return nova;
-    }
-};
+
+}
 
 void CriarDeck(Lista *deck1, Lista *deck2, Lista *deck3, Lista *deck4, Lista *deck5){
+    int QuantFeijao = 0,QuantGanso = 0,QuantOvo = 0,QuantHarpa = 0;
+    int QuantFii = 0, QuantFaa = 0, QuantFoo = 0, QuantFuu = 0;
+    int *pontFei = &QuantFeijao;
+    int *pontGan = &QuantGanso;
+    int *pontOvo = &QuantOvo;
+    int *pontHarp = &QuantHarpa;
+    int *pontFii = &QuantFii;
+    int *pontFaa = &QuantFaa;
+    int *pontFoo = &QuantFoo;
+    int *pontFuu = &QuantFuu;
     struct carta c;
     int i;
     for (i = 0; i < 10; i++){
         c.num = rand()%16;
-        c = ChecarCartaCriada(c.num);
+        c = ChecarCartaCriada(c.num,pontFei,pontGan,pontOvo,pontHarp,pontFii,pontFoo,pontFuu,pontFaa);
         inserir(deck1,c);
         c.num = rand()%16;
-        c = ChecarCartaCriada(c.num);
+        c = ChecarCartaCriada(c.num,pontFei,pontGan,pontOvo,pontHarp,pontFii,pontFoo,pontFuu,pontFaa);
         inserir(deck2,c);
         c.num = rand()%16;
-        c = ChecarCartaCriada(c.num);
+        c = ChecarCartaCriada(c.num,pontFei,pontGan,pontOvo,pontHarp,pontFii,pontFoo,pontFuu,pontFaa);
         inserir(deck3,c);
         c.num = rand()%16;
-        c = ChecarCartaCriada(c.num);
+        c = ChecarCartaCriada(c.num,pontFei,pontGan,pontOvo,pontHarp,pontFii,pontFoo,pontFuu,pontFaa);
         inserir(deck4,c);
         c.num = rand()%16;
-        c = ChecarCartaCriada(c.num);
+        c = ChecarCartaCriada(c.num,pontFei,pontGan,pontOvo,pontHarp,pontFii,pontFoo,pontFuu,pontFaa);
         inserir(deck5,c);
     }
 }
 
 void MostrarDeck(Lista *deck1, Lista *deck2, Lista *deck3, Lista *deck4, Lista *deck5){
+
     int pos = 0;
     struct carta pegarCarta;
     while(pos < tamanho(deck1) || pos < tamanho(deck2)){
@@ -91,7 +131,7 @@ void MostrarDeck(Lista *deck1, Lista *deck2, Lista *deck3, Lista *deck4, Lista *
 }
 
 void MostrarCard(struct carta card){
-    if(card.num == 0 || card.num == 15) printf("|   %s     |  ", card.nome);
+    if(card.num == 0  || card.num == 10 || card.num == 11 || card.num == 12 || card.num == 15) printf("|   %s     |  ", card.nome);
     else if(card.num == 13 || card.num == 14) printf("|   %s   |  ", card.nome);
     else if(card.num >= 1 && card.num <= 9) printf("|   %s %d   |  ", card.nome,card.num);
 }
