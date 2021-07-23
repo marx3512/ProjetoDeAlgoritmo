@@ -1,15 +1,20 @@
 # depslib dependency file v1.0
 1626095448 source:c:\users\pbeet\desktop\faculdade\algoritmos\projectgame\projectgame\listadecks.c
 
-1626095469 source:c:\users\pbeet\desktop\faculdade\algoritmos\projectgame\projectgame\pilhajoao.c
+1627073626 source:c:\users\pbeet\desktop\faculdade\algoritmos\projectgame\projectgame\pilhajoao.c
+	<stdio.h>
+	<stdlib.h>
+	"ListaDeck.h"
+	"PilhaJoao.h"
 
-1626970232 source:c:\users\pbeet\desktop\faculdade\algoritmos\projectgame\projectgame\main.c
+1627072401 source:c:\users\pbeet\desktop\faculdade\algoritmos\projectgame\projectgame\main.c
 	<stdlib.h>
 	<stdio.h>
 	<locale.h>
 	<string.h>
 	<time.h>
 	"ListaDeck.h"
+	"PilhaJoao.h"
 
 1626527335 source:c:\users\pbeet\desktop\faculdade\algoritmos\projectgame\projectgame\filadecks.c
 	<stdio.h>
@@ -23,5 +28,7 @@
 	<stdlib.h>
 	"ListaDeck.h"
 
-1626798812 c:\users\pbeet\desktop\faculdade\algoritmos\projectgame\projectgame\listadeck.h
+1627070377 c:\users\pbeet\desktop\faculdade\algoritmos\projectgame\projectgame\listadeck.h
+
+1627073187 c:\users\pbeet\desktop\faculdade\algoritmos\projectgame\projectgame\pilhajoao.h
 

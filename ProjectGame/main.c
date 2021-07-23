@@ -4,16 +4,16 @@
 #include <string.h>
 #include <time.h>
 #include "ListaDeck.h"
+#include "PilhaJoao.h"
 
 struct carta ChecarCartaCriada(int num,int *Feijao,int *Ganso,int *Ovo,int *Harpa,int *Fii,int *Foo,int *Fuu,int *Faa){
     int cond = 0,numeroGerado = num;
     struct carta nova;
     while(cond != 1){
-            if(numeroGerado >= 1 && numeroGerado <= 9 && *(Feijao) <= 35){
+        if(numeroGerado >= 1 && numeroGerado <= 9 && *(Feijao) <= 35){
             strcpy(nova.nome,"F *");
             nova.num = numeroGerado;
             *Feijao += 1;
-            printf("Quantidade Feijão: %d \n", *Feijao);
             cond = 1;
             return nova;
         }
@@ -21,7 +21,6 @@ struct carta ChecarCartaCriada(int num,int *Feijao,int *Ganso,int *Ovo,int *Harp
             strcpy(nova.nome,"FII");
             nova.num = numeroGerado;
             *Fii += 1;
-            printf("Quantidade Fii: %d \n", *Fii);
             cond = 1;
             return nova;
         }
@@ -29,7 +28,6 @@ struct carta ChecarCartaCriada(int num,int *Feijao,int *Ganso,int *Ovo,int *Harp
             strcpy(nova.nome,"FAA");
             nova.num = numeroGerado;
             *Faa += 1;
-            printf("Quantidade Faa: %d \n", *Faa);
             cond = 1;
             return nova;
         }
@@ -37,7 +35,6 @@ struct carta ChecarCartaCriada(int num,int *Feijao,int *Ganso,int *Ovo,int *Harp
             strcpy(nova.nome,"FOO");
             nova.num = numeroGerado;
             *Foo += 1;
-            printf("Quantidade Foo: %d \n", *Foo);
             cond = 1;
             return nova;
         }
@@ -45,7 +42,6 @@ struct carta ChecarCartaCriada(int num,int *Feijao,int *Ganso,int *Ovo,int *Harp
             strcpy(nova.nome,"FUU");
             nova.num = numeroGerado;
             *Fuu += 1;
-            printf("Quantidade Fuu: %d \n", *Fuu);
             cond = 1;
             return nova;
         }
@@ -53,7 +49,6 @@ struct carta ChecarCartaCriada(int num,int *Feijao,int *Ganso,int *Ovo,int *Harp
             strcpy(nova.nome,"Ganso");
             nova.num = numeroGerado;
             *Ganso += 1;
-            printf("Quantidade Ganso: %d \n", *Ganso);
             cond = 1;
             return nova;
         }
@@ -61,7 +56,6 @@ struct carta ChecarCartaCriada(int num,int *Feijao,int *Ganso,int *Ovo,int *Harp
             strcpy(nova.nome,"Harpa");
             nova.num = numeroGerado;
             *Harpa += 1;
-            printf("Quantidade Harpa: %d \n", *Harpa);
             cond = 1;
             return nova;
         }
@@ -69,7 +63,6 @@ struct carta ChecarCartaCriada(int num,int *Feijao,int *Ganso,int *Ovo,int *Harp
             strcpy(nova.nome,"Ovo");
             nova.num = numeroGerado;
             *Ovo += 1;
-            printf("Quantidade Ovo: %d \n", *Ovo);
             cond = 1;
             return nova;
         }
@@ -114,7 +107,7 @@ void MostrarDeck(Lista *deck1, Lista *deck2, Lista *deck3, Lista *deck4, Lista *
 
     int pos = 0;
     struct carta pegarCarta;
-    while(pos < tamanho(deck1) || pos < tamanho(deck2)){
+    while(pos < tamanho(deck1) || pos < tamanho(deck2) || pos < tamanho(deck3)|| pos < tamanho(deck4)|| pos < tamanho(deck5)){
         int cond1 = acessarIndice(deck1,pos,&pegarCarta);
         if (cond1 == 1) MostrarCard(pegarCarta);
         int cond2 = acessarIndice(deck2,pos,&pegarCarta);
@@ -209,10 +202,15 @@ int main(){
 
     CriarDeck(deck1, deck2, deck3, deck4,deck5);
 
-    while(FimDeJogo != 1){
+    Pilha *pilhaJoao;
+    struct carta c;
+    c.num = 4;
+    int teste = inserirPilha(pilhaJoao,c);
+    printf("Teste: %d", teste);
+    /*while(FimDeJogo != 1){
         if(vez == 0) TurnoJoao(deck1,deck2,deck3,deck4,deck5,pontVez);
         if(*pontVez == 1) TurnoGigante(deck1,deck2,deck3,deck4,deck5,pontVez);
-    }
+    }*/
 
     return 0;
 }
