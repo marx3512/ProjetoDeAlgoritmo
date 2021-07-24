@@ -27,3 +27,23 @@ int inserirPilha(Pilha *pilha,struct carta nova){
     *pilha = novo;
     return 1;
 }
+
+int tamanhoPilha(Pilha *pilha){
+    if(pilha == NULL) return 0;
+    if(*pilha == NULL) return 0;
+    int tam = 0;
+    Elemento *aux;
+    aux = *pilha;
+    while(aux != NULL){
+        tam++;
+        aux = aux->prox;
+    }
+    return tam;
+}
+
+int acessarPilha(Pilha *pilha,struct carta *c){
+    if (pilha == NULL) return 0;
+    if (*pilha == NULL) return 0;
+    *c = (*pilha)->info;
+    return 1;
+}

@@ -97,3 +97,9 @@ int acessarIndice(Lista *lista,int pos,struct carta *c){
         return 1;
     }
 }
+
+int acessarInicio(Lista *lista,struct carta *c){
+    if(lista == NULL) return 0;
+    if(lista->inicio == NULL) return 0;
+    *c = lista->inicio->info;
+}

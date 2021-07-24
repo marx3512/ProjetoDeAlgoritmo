@@ -103,9 +103,9 @@ void CriarDeck(Lista *deck1, Lista *deck2, Lista *deck3, Lista *deck4, Lista *de
     }
 }
 
-void MostrarDeck(Lista *deck1, Lista *deck2, Lista *deck3, Lista *deck4, Lista *deck5){
+void MostrarDeckPilha(Lista *deck1, Lista *deck2, Lista *deck3, Lista *deck4, Lista *deck5,Pilha *pilhaJ){
 
-    int pos = 0;
+    int pos = 0,linha = 0;
     struct carta pegarCarta;
     while(pos < tamanho(deck1) || pos < tamanho(deck2) || pos < tamanho(deck3)|| pos < tamanho(deck4)|| pos < tamanho(deck5)){
         int cond1 = acessarIndice(deck1,pos,&pegarCarta);
@@ -118,7 +118,9 @@ void MostrarDeck(Lista *deck1, Lista *deck2, Lista *deck3, Lista *deck4, Lista *
         if (cond4 == 1) MostrarCard(pegarCarta);
         int cond5 = acessarIndice(deck5,pos,&pegarCarta);
         if (cond5 == 1) MostrarCard(pegarCarta);
+        MostrarPilhaJoao(pilhaJ,pos);
         printf("\n");
+        linha++;
         pos++;
     }
 }
@@ -129,10 +131,47 @@ void MostrarCard(struct carta card){
     else if(card.num >= 1 && card.num <= 9) printf("|   %s %d   |  ", card.nome,card.num);
 }
 
-void TurnoJoao(Lista *deck1,Lista *deck2,Lista *deck3,Lista *deck4, Lista *deck5,int *vez){
+void MostrarPilhaJoao(Pilha *pilhaJoao,int linha){
+    struct carta pegarPilha;
+    int Ganso,Harpa,Ovo;
+    int condi = acessarPilha(pilhaJoao,&pegarPilha);
+    if(condi == 0 && linha == 0) printf("    Topo   [ ] ");
+    else if(condi != 0 && linha == 0) printf("    Topo   [%d] ", pegarPilha.num);
+    else if(linha == 1) printf("    Altura [%d] ", tamanhoPilha(pilhaJoao));
+    else if(linha == 2) printf("    Ganso  [%d] ", Ganso);
+    else if(linha == 3) printf("    Ovo    [%d] ", Ovo);
+    else if(linha == 4) printf("    Harpa  [%d] ", Harpa);
+}
+
+Lista* listaEscolhida(Lista *deck1,Lista *deck2,Lista *deck3,Lista *deck4,Lista *deck5, char lis){
+    if(strcmp(lis,"A") == 0) return deck1;
+    else if(lis == "B") return deck2;
+    else if(lis == "C") return deck3;
+    else if(lis == "D") return deck4;
+    else if(lis == "E") return deck5;
+}
+
+void ChecarAcao(Lista *deck1,Lista *deck2,Lista *deck3,Lista *deck4,Lista *deck5,int acao,int *vez){
+    char coluna1[5],coluna2[5];
+    Lista *acesso1,*acesso2;
+    struct carta cartaPegada;
+    if(*vez == 0){
+        if(acao == 1){
+            printf("Escolha uma coluna: ");
+            scanf("%s", coluna1);
+            printf("\n");
+            acesso1 = listaEscolhida(deck1,deck2,deck3,deck4,deck5,coluna1);
+            printf("Letra %s", coluna1);
+            printf("Esolha outra coluna: ");
+            scanf(" %s", coluna2);
+        }
+    }
+}
+
+void TurnoJoao(Lista *deck1,Lista *deck2,Lista *deck3,Lista *deck4, Lista *deck5,Pilha *pilhaJ,int *vez){
     int acao,quantAcao = 3,turno = 1;
     while(turno <= 3){
-        MostrarDeck(deck1,deck2,deck3,deck4,deck5);
+        MostrarDeckPilha(deck1,deck2,deck3,deck4,deck5,pilhaJ);
 
         printf("\n");
         printf("Vez de João, você tem %d. Escolha uma opção: \n", quantAcao);
@@ -147,6 +186,7 @@ void TurnoJoao(Lista *deck1,Lista *deck2,Lista *deck3,Lista *deck4, Lista *deck5
             system("pause");
         }
         else{
+            ChecarAcao(deck1,deck2,deck3,deck4,deck5,acao,vez);
             turno++;
             quantAcao--;
         }
@@ -156,10 +196,10 @@ void TurnoJoao(Lista *deck1,Lista *deck2,Lista *deck3,Lista *deck4, Lista *deck5
     *vez = 1;
 }
 
-void TurnoGigante(Lista *deck1,Lista *deck2,Lista *deck3,Lista *deck4,Lista *deck5,int *vez){
+void TurnoGigante(Lista *deck1,Lista *deck2,Lista *deck3,Lista *deck4,Lista *deck5,Pilha *pilhaJ,int *vez){
     int acao,turno = 1;
     while(turno <= 1){
-        MostrarDeck(deck1,deck2,deck3,deck4,deck5);
+        MostrarDeckPilha(deck1,deck2,deck3,deck4,deck5,pilhaJ);
 
         printf("\n");
         printf("Vez do Gigante, você tem 1 ação. Escolha uma opção... \n");
@@ -203,14 +243,12 @@ int main(){
     CriarDeck(deck1, deck2, deck3, deck4,deck5);
 
     Pilha *pilhaJoao;
-    struct carta c;
-    c.num = 4;
-    int teste = inserirPilha(pilhaJoao,c);
-    printf("Teste: %d", teste);
-    /*while(FimDeJogo != 1){
-        if(vez == 0) TurnoJoao(deck1,deck2,deck3,deck4,deck5,pontVez);
-        if(*pontVez == 1) TurnoGigante(deck1,deck2,deck3,deck4,deck5,pontVez);
-    }*/
+    pilhaJoao = criarPilha();
+
+    while(FimDeJogo != 1){
+        if(vez == 0) TurnoJoao(deck1,deck2,deck3,deck4,deck5,pilhaJoao,pontVez);
+        if(vez == 1) TurnoGigante(deck1,deck2,deck3,deck4,deck5,pilhaJoao,pontVez);
+    }
 
     return 0;
 }
