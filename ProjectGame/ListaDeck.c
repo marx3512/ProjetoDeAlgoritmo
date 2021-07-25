@@ -26,6 +26,16 @@ Lista* criar(){
     return nova;
 }
 
+Lista* listaEscolhida(Lista *deck1,Lista *deck2,Lista *deck3,Lista *deck4,Lista *deck5, char letra){
+    if(letra == "A") return deck1;
+    if(letra == "B") return deck2;
+    if(letra == "C") return deck3;
+    if(letra == "D") return deck4;
+    if(letra == "E") return deck5;
+
+    return NULL;
+}
+
 int tamanho(Lista *lista){
     if(lista == NULL) return -1;
     return lista->qtd;
@@ -102,4 +112,5 @@ int acessarInicio(Lista *lista,struct carta *c){
     if(lista == NULL) return 0;
     if(lista->inicio == NULL) return 0;
     *c = lista->inicio->info;
+    return 1;
 }

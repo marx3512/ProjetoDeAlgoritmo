@@ -6,6 +6,7 @@ struct carta{
 };
 
 Lista* criar();
+Lista* listaEscolhida(Lista *,Lista *,Lista *,Lista *,Lista *,char letra);
 int tamanho(Lista *);
 int inserir(Lista *, struct carta);
 int removerInicio(Lista *);

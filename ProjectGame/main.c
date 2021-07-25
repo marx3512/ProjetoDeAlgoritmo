@@ -105,22 +105,27 @@ void CriarDeck(Lista *deck1, Lista *deck2, Lista *deck3, Lista *deck4, Lista *de
 
 void MostrarDeckPilha(Lista *deck1, Lista *deck2, Lista *deck3, Lista *deck4, Lista *deck5,Pilha *pilhaJ){
 
-    int pos = 0,linha = 0;
+    int pos = 0;
     struct carta pegarCarta;
+    printf("      A              B              C              D              E \n");
     while(pos < tamanho(deck1) || pos < tamanho(deck2) || pos < tamanho(deck3)|| pos < tamanho(deck4)|| pos < tamanho(deck5)){
         int cond1 = acessarIndice(deck1,pos,&pegarCarta);
         if (cond1 == 1) MostrarCard(pegarCarta);
+        else if(cond1 == 0) printf("               ");
         int cond2 = acessarIndice(deck2,pos,&pegarCarta);
         if (cond2 == 1) MostrarCard(pegarCarta);
+        else if(cond2 == 0) printf("               ");
         int cond3 = acessarIndice(deck3,pos,&pegarCarta);
         if (cond3 == 1) MostrarCard(pegarCarta);
+        else if(cond3 == 0) printf("               ");
         int cond4 = acessarIndice(deck4,pos,&pegarCarta);
         if (cond4 == 1) MostrarCard(pegarCarta);
+        else if(cond4 == 0) printf("               ");
         int cond5 = acessarIndice(deck5,pos,&pegarCarta);
         if (cond5 == 1) MostrarCard(pegarCarta);
+        else if(cond5 == 0) printf("               ");
         MostrarPilhaJoao(pilhaJ,pos);
         printf("\n");
-        linha++;
         pos++;
     }
 }
@@ -143,27 +148,22 @@ void MostrarPilhaJoao(Pilha *pilhaJoao,int linha){
     else if(linha == 4) printf("    Harpa  [%d] ", Harpa);
 }
 
-Lista* listaEscolhida(Lista *deck1,Lista *deck2,Lista *deck3,Lista *deck4,Lista *deck5, char lis){
-    if(strcmp(lis,"A") == 0) return deck1;
-    else if(lis == "B") return deck2;
-    else if(lis == "C") return deck3;
-    else if(lis == "D") return deck4;
-    else if(lis == "E") return deck5;
-}
-
 void ChecarAcao(Lista *deck1,Lista *deck2,Lista *deck3,Lista *deck4,Lista *deck5,int acao,int *vez){
     char coluna1[5],coluna2[5];
     Lista *acesso1,*acesso2;
     struct carta cartaPegada;
     if(*vez == 0){
         if(acao == 1){
+            acessarInicio(deck1,&cartaPegada);
+            printf("Carta pegada: %d", cartaPegada.num);
             printf("Escolha uma coluna: ");
             scanf("%s", coluna1);
             printf("\n");
             acesso1 = listaEscolhida(deck1,deck2,deck3,deck4,deck5,coluna1);
-            printf("Letra %s", coluna1);
             printf("Esolha outra coluna: ");
             scanf(" %s", coluna2);
+
+            removerFim(deck5);
         }
     }
 }
@@ -172,8 +172,8 @@ void TurnoJoao(Lista *deck1,Lista *deck2,Lista *deck3,Lista *deck4, Lista *deck5
     int acao,quantAcao = 3,turno = 1;
     while(turno <= 3){
         MostrarDeckPilha(deck1,deck2,deck3,deck4,deck5,pilhaJ);
+        struct carta acessar;
 
-        printf("\n");
         printf("Vez de João, você tem %d. Escolha uma opção: \n", quantAcao);
         printf("1: Mover entre colunas( cartas da frente) \n");
         printf("2: Mover de trás para frente( mesma coluna ) \n");
@@ -227,7 +227,11 @@ int main(){
     pontVez = &vez;
     pontFim = &FimDeJogo;
 
-    Lista *deck1,*deck2,*deck3,*deck4,*deck5;
+    Lista *deck1;
+    Lista *deck2;
+    Lista *deck3;
+    Lista *deck4;
+    Lista *deck5;
 
     deck1 = NULL;
     deck1 = criar();
