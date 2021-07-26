@@ -139,24 +139,25 @@ void MostrarPilhaJoao(Pilha *pilhaJoao,int linha){
 }
 
 int ChecarListaEscolhida(char coluna){
-    if(strcmp(coluna,"A")) return 0;
-    else if(coluna == "B") return 1;
-    else if(coluna == "C") return 2;
-    else if(coluna == "D") return 3;
-    else if(coluna == "E") return 4;
+    if(coluna == 'A') return 0;
+    else if(coluna == 'B') return 1;
+    else if(coluna == 'C') return 2;
+    else if(coluna == 'D') return 3;
+    else if(coluna == 'E') return 4;
+    return 10;
 }
 
 void ChecarAcao(Lista *decks[],int acao,int *vez){
-    char coluna1[5],coluna2[5];
+    char coluna1,coluna2;
     struct carta cartaPegada;
     if(*vez == 0){
         if(acao == 1){
             printf("Escolha uma coluna: ");
-            scanf("%s", coluna1);
+            scanf(" %c", &coluna1);
             printf("Coluna: %d", ChecarListaEscolhida(coluna1));
             printf("\n");
-            printf("Esolha outra coluna: ");
-            scanf(" %s", coluna2);
+            printf("Escolha outra coluna: ");
+            scanf(" %c", &coluna2);
             /*acessarFim(decks[ChecarListaEscolhida(coluna1)],&cartaPegada);
             removerFim(decks[ChecarListaEscolhida(coluna1)]);
             inserir(decks[ChecarListaEscolhida(coluna2)],cartaPegada);*/
