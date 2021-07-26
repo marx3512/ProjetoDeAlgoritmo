@@ -71,7 +71,7 @@ struct carta ChecarCartaCriada(int num,int *Feijao,int *Ganso,int *Ovo,int *Harp
 
 }
 
-void CriarDeck(Lista *deck1, Lista *deck2, Lista *deck3, Lista *deck4, Lista *deck5){
+void CriarDeck(Lista *decks[]){
     int QuantFeijao = 0,QuantGanso = 0,QuantOvo = 0,QuantHarpa = 0;
     int QuantFii = 0, QuantFaa = 0, QuantFoo = 0, QuantFuu = 0;
     int *pontFei = &QuantFeijao;
@@ -83,45 +83,35 @@ void CriarDeck(Lista *deck1, Lista *deck2, Lista *deck3, Lista *deck4, Lista *de
     int *pontFoo = &QuantFoo;
     int *pontFuu = &QuantFuu;
     struct carta c;
-    int i;
+    int i,y;
     for (i = 0; i < 10; i++){
-        c.num = rand()%16;
-        c = ChecarCartaCriada(c.num,pontFei,pontGan,pontOvo,pontHarp,pontFii,pontFoo,pontFuu,pontFaa);
-        inserir(deck1,c);
-        c.num = rand()%16;
-        c = ChecarCartaCriada(c.num,pontFei,pontGan,pontOvo,pontHarp,pontFii,pontFoo,pontFuu,pontFaa);
-        inserir(deck2,c);
-        c.num = rand()%16;
-        c = ChecarCartaCriada(c.num,pontFei,pontGan,pontOvo,pontHarp,pontFii,pontFoo,pontFuu,pontFaa);
-        inserir(deck3,c);
-        c.num = rand()%16;
-        c = ChecarCartaCriada(c.num,pontFei,pontGan,pontOvo,pontHarp,pontFii,pontFoo,pontFuu,pontFaa);
-        inserir(deck4,c);
-        c.num = rand()%16;
-        c = ChecarCartaCriada(c.num,pontFei,pontGan,pontOvo,pontHarp,pontFii,pontFoo,pontFuu,pontFaa);
-        inserir(deck5,c);
+        for(y = 0; y < 5; y++){
+            c.num = rand()%16;
+            c = ChecarCartaCriada(c.num,pontFei,pontGan,pontOvo,pontHarp,pontFii,pontFoo,pontFuu,pontFaa);
+            inserir(decks[y],c);
+        }
     }
 }
 
-void MostrarDeckPilha(Lista *deck1, Lista *deck2, Lista *deck3, Lista *deck4, Lista *deck5,Pilha *pilhaJ){
+void MostrarDeckPilha(Lista *decks[],Pilha *pilhaJ){
 
     int pos = 0;
     struct carta pegarCarta;
     printf("      A              B              C              D              E \n");
-    while(pos < tamanho(deck1) || pos < tamanho(deck2) || pos < tamanho(deck3)|| pos < tamanho(deck4)|| pos < tamanho(deck5)){
-        int cond1 = acessarIndice(deck1,pos,&pegarCarta);
+    while(pos < tamanho(decks[0]) || pos < tamanho(decks[1]) || pos < tamanho(decks[2])|| pos < tamanho(decks[3])|| pos < tamanho(decks[4])){
+        int cond1 = acessarIndice(decks[0],pos,&pegarCarta);
         if (cond1 == 1) MostrarCard(pegarCarta);
         else if(cond1 == 0) printf("               ");
-        int cond2 = acessarIndice(deck2,pos,&pegarCarta);
+        int cond2 = acessarIndice(decks[1],pos,&pegarCarta);
         if (cond2 == 1) MostrarCard(pegarCarta);
         else if(cond2 == 0) printf("               ");
-        int cond3 = acessarIndice(deck3,pos,&pegarCarta);
+        int cond3 = acessarIndice(decks[2],pos,&pegarCarta);
         if (cond3 == 1) MostrarCard(pegarCarta);
         else if(cond3 == 0) printf("               ");
-        int cond4 = acessarIndice(deck4,pos,&pegarCarta);
+        int cond4 = acessarIndice(decks[3],pos,&pegarCarta);
         if (cond4 == 1) MostrarCard(pegarCarta);
         else if(cond4 == 0) printf("               ");
-        int cond5 = acessarIndice(deck5,pos,&pegarCarta);
+        int cond5 = acessarIndice(decks[4],pos,&pegarCarta);
         if (cond5 == 1) MostrarCard(pegarCarta);
         else if(cond5 == 0) printf("               ");
         MostrarPilhaJoao(pilhaJ,pos);
@@ -148,30 +138,36 @@ void MostrarPilhaJoao(Pilha *pilhaJoao,int linha){
     else if(linha == 4) printf("    Harpa  [%d] ", Harpa);
 }
 
-void ChecarAcao(Lista *deck1,Lista *deck2,Lista *deck3,Lista *deck4,Lista *deck5,int acao,int *vez){
+int ChecarListaEscolhida(char coluna){
+    if(strcmp(coluna,"A")) return 0;
+    else if(coluna == "B") return 1;
+    else if(coluna == "C") return 2;
+    else if(coluna == "D") return 3;
+    else if(coluna == "E") return 4;
+}
+
+void ChecarAcao(Lista *decks[],int acao,int *vez){
     char coluna1[5],coluna2[5];
-    Lista *acesso1,*acesso2;
     struct carta cartaPegada;
     if(*vez == 0){
         if(acao == 1){
-            acessarInicio(deck1,&cartaPegada);
-            printf("Carta pegada: %d", cartaPegada.num);
             printf("Escolha uma coluna: ");
             scanf("%s", coluna1);
+            printf("Coluna: %d", ChecarListaEscolhida(coluna1));
             printf("\n");
-            acesso1 = listaEscolhida(deck1,deck2,deck3,deck4,deck5,coluna1);
             printf("Esolha outra coluna: ");
             scanf(" %s", coluna2);
-
-            removerFim(deck5);
+            /*acessarFim(decks[ChecarListaEscolhida(coluna1)],&cartaPegada);
+            removerFim(decks[ChecarListaEscolhida(coluna1)]);
+            inserir(decks[ChecarListaEscolhida(coluna2)],cartaPegada);*/
         }
     }
 }
 
-void TurnoJoao(Lista *deck1,Lista *deck2,Lista *deck3,Lista *deck4, Lista *deck5,Pilha *pilhaJ,int *vez){
+void TurnoJoao(Lista *decks[],Pilha *pilhaJ,int *vez){
     int acao,quantAcao = 3,turno = 1;
     while(turno <= 3){
-        MostrarDeckPilha(deck1,deck2,deck3,deck4,deck5,pilhaJ);
+        MostrarDeckPilha(decks,pilhaJ);
         struct carta acessar;
 
         printf("Vez de João, você tem %d. Escolha uma opção: \n", quantAcao);
@@ -186,7 +182,7 @@ void TurnoJoao(Lista *deck1,Lista *deck2,Lista *deck3,Lista *deck4, Lista *deck5
             system("pause");
         }
         else{
-            ChecarAcao(deck1,deck2,deck3,deck4,deck5,acao,vez);
+            ChecarAcao(decks,acao,vez);
             turno++;
             quantAcao--;
         }
@@ -196,10 +192,10 @@ void TurnoJoao(Lista *deck1,Lista *deck2,Lista *deck3,Lista *deck4, Lista *deck5
     *vez = 1;
 }
 
-void TurnoGigante(Lista *deck1,Lista *deck2,Lista *deck3,Lista *deck4,Lista *deck5,Pilha *pilhaJ,int *vez){
+void TurnoGigante(Lista *decks[],Pilha *pilhaJ,int *vez){
     int acao,turno = 1;
     while(turno <= 1){
-        MostrarDeckPilha(deck1,deck2,deck3,deck4,deck5,pilhaJ);
+        MostrarDeckPilha(decks,pilhaJ);
 
         printf("\n");
         printf("Vez do Gigante, você tem 1 ação. Escolha uma opção... \n");
@@ -222,36 +218,24 @@ void TurnoGigante(Lista *deck1,Lista *deck2,Lista *deck3,Lista *deck4,Lista *dec
 int main(){
     setlocale(LC_ALL,"");
     srand(time(NULL));
-    int vez = 0,FimDeJogo = 0;
+    int vez = 0,FimDeJogo = 0,i = 0;
     int *pontVez,*pontFim;
     pontVez = &vez;
     pontFim = &FimDeJogo;
 
-    Lista *deck1;
-    Lista *deck2;
-    Lista *deck3;
-    Lista *deck4;
-    Lista *deck5;
+    Lista *decks[5];
+    for(i = 0; i < 5;i++){
+        decks[i] = criar();
+    }
 
-    deck1 = NULL;
-    deck1 = criar();
-    deck2 = NULL;
-    deck2 = criar();
-    deck3 = NULL;
-    deck3 = criar();
-    deck4 = NULL;
-    deck4 = criar();
-    deck5 = NULL;
-    deck5 = criar();
-
-    CriarDeck(deck1, deck2, deck3, deck4,deck5);
+    CriarDeck(decks);
 
     Pilha *pilhaJoao;
     pilhaJoao = criarPilha();
 
     while(FimDeJogo != 1){
-        if(vez == 0) TurnoJoao(deck1,deck2,deck3,deck4,deck5,pilhaJoao,pontVez);
-        if(vez == 1) TurnoGigante(deck1,deck2,deck3,deck4,deck5,pilhaJoao,pontVez);
+        if(vez == 0) TurnoJoao(decks,pilhaJoao,pontVez);
+        if(vez == 1) TurnoGigante(decks,pilhaJoao,pontVez);
     }
 
     return 0;

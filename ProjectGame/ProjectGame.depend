@@ -7,7 +7,7 @@
 	"ListaDeck.h"
 	"PilhaJoao.h"
 
-1627218436 source:c:\users\pbeet\desktop\faculdade\algoritmos\projectgame\projectgame\main.c
+1627306287 source:c:\users\pbeet\desktop\faculdade\algoritmos\projectgame\projectgame\main.c
 	<stdlib.h>
 	<stdio.h>
 	<locale.h>
@@ -23,12 +23,12 @@
 
 1626527344 c:\users\pbeet\desktop\faculdade\algoritmos\projectgame\projectgame\filadecks.h
 
-1627215381 source:c:\users\pbeet\desktop\faculdade\algoritmos\projectgame\projectgame\listadeck.c
+1627305670 source:c:\users\pbeet\desktop\faculdade\algoritmos\projectgame\projectgame\listadeck.c
 	<stdio.h>
 	<stdlib.h>
 	"ListaDeck.h"
 
-1627214276 c:\users\pbeet\desktop\faculdade\algoritmos\projectgame\projectgame\listadeck.h
+1627303416 c:\users\pbeet\desktop\faculdade\algoritmos\projectgame\projectgame\listadeck.h
 
 1627123686 c:\users\pbeet\desktop\faculdade\algoritmos\projectgame\projectgame\pilhajoao.h
 
