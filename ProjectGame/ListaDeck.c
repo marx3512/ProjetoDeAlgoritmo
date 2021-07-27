@@ -31,7 +31,7 @@ int tamanho(Lista *lista){
     return lista->qtd;
 }
 
-int inserir(Lista *lista, struct carta nova){
+int inserirFim(Lista *lista, struct carta nova){
     if( lista == NULL) return 0;
     Elemento *novo;
     novo = (Elemento *)malloc(sizeof(Elemento));

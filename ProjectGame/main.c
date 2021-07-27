@@ -88,7 +88,7 @@ void CriarDeck(Lista *decks[]){
         for(y = 0; y < 5; y++){
             c.num = rand()%16;
             c = ChecarCartaCriada(c.num,pontFei,pontGan,pontOvo,pontHarp,pontFii,pontFoo,pontFuu,pontFaa);
-            inserir(decks[y],c);
+            inserirFim(decks[y],c);
         }
     }
 }
@@ -147,20 +147,41 @@ int ChecarListaEscolhida(char coluna){
     return 10;
 }
 
-void ChecarAcao(Lista *decks[],int acao,int *vez){
+void ChecarAcao(Lista *decks[],Pilha *pilhaJ,int acao,int *vez){
     char coluna1,coluna2;
-    struct carta cartaPegada;
+    struct carta cartaPegada,cartaPilha;
     if(*vez == 0){
         if(acao == 1){
             printf("Escolha uma coluna: ");
             scanf(" %c", &coluna1);
-            printf("Coluna: %d", ChecarListaEscolhida(coluna1));
             printf("\n");
             printf("Escolha outra coluna: ");
             scanf(" %c", &coluna2);
-            /*acessarFim(decks[ChecarListaEscolhida(coluna1)],&cartaPegada);
+            acessarFim(decks[ChecarListaEscolhida(coluna1)],&cartaPegada);
             removerFim(decks[ChecarListaEscolhida(coluna1)]);
-            inserir(decks[ChecarListaEscolhida(coluna2)],cartaPegada);*/
+            inserirFim(decks[ChecarListaEscolhida(coluna2)],cartaPegada);
+        }
+        if(acao == 2){
+            printf("Escolha uma coluna: ");
+            scanf(" %c", &coluna1);
+            acessarInicio(decks[ChecarListaEscolhida(coluna1)], &cartaPegada);
+            removerInicio(decks[ChecarListaEscolhida(coluna1)]);
+            inserirFim(decks[ChecarListaEscolhida(coluna1)],cartaPegada);
+        }
+        if(acao == 3) {
+            printf("Escolha uma coluna: ");
+            scanf(" %c", &coluna1);
+            acessarInicio(decks[ChecarListaEscolhida(coluna1)], &cartaPegada);
+            acessarPilha(pilhaJ,&cartaPilha);
+            printf("Carta pilha: %d\n", cartaPilha.num);
+            if(cartaPilha.num > cartaPegada.num){
+                printf("Não é possivel pegar essa carta,por favor escolha outra carta");
+                system("pause");
+            }
+            else{
+                removerInicio(decks[ChecarListaEscolhida(coluna1)]);
+                inserirPilha(pilhaJ,cartaPegada);
+            }
         }
     }
 }
@@ -183,7 +204,7 @@ void TurnoJoao(Lista *decks[],Pilha *pilhaJ,int *vez){
             system("pause");
         }
         else{
-            ChecarAcao(decks,acao,vez);
+            ChecarAcao(decks,pilhaJ,acao,vez);
             turno++;
             quantAcao--;
         }
