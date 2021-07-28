@@ -147,40 +147,87 @@ int ChecarListaEscolhida(char coluna){
     return 10;
 }
 
-void ChecarAcao(Lista *decks[],Pilha *pilhaJ,int acao,int *vez){
+int ChecarAcao(Lista *decks[],Pilha *pilhaJ,int acao,int *vez){
     char coluna1,coluna2;
     struct carta cartaPegada,cartaPilha;
     if(*vez == 0){
         if(acao == 1){
-            printf("Escolha uma coluna: ");
+            int cond = 1;
+            printf("Escolha a coluna de onde a carta vai ser retirada: ");
             scanf(" %c", &coluna1);
-            printf("\n");
-            printf("Escolha outra coluna: ");
-            scanf(" %c", &coluna2);
-            acessarFim(decks[ChecarListaEscolhida(coluna1)],&cartaPegada);
-            removerFim(decks[ChecarListaEscolhida(coluna1)]);
-            inserirFim(decks[ChecarListaEscolhida(coluna2)],cartaPegada);
+            if(ChecarListaEscolhida(coluna1) == 10){
+                printf("Coluna não existente, por favor digite a letra de uma coluna: \n");
+                cond = 0;
+                system("pause");
+                return 0;
+            }
+            else{
+                printf("\n");
+                printf("Escolha a coluna em que a carta vai ser inserida: ");
+                scanf(" %c", &coluna2);
+
+                if(ChecarListaEscolhida(coluna2) == 10){
+                    printf("Coluna não existente, por favor digite a letra de uma coluna: \n");
+                    cond = 0;
+                    system("pause");
+                    return 0;
+                }
+            }
+
+            if(cond == 1){
+                acessarFim(decks[ChecarListaEscolhida(coluna1)],&cartaPegada);
+                removerFim(decks[ChecarListaEscolhida(coluna1)]);
+                inserirFim(decks[ChecarListaEscolhida(coluna2)],cartaPegada);
+                cond = 0;
+                return 1;
+            }
         }
         if(acao == 2){
             printf("Escolha uma coluna: ");
             scanf(" %c", &coluna1);
+            if(ChecarListaEscolhida(coluna1) == 10){
+                printf("Coluna não existente, por favor digite a letra de uma coluna: \n");
+                system("pause");
+                return 0;
+            }
             acessarInicio(decks[ChecarListaEscolhida(coluna1)], &cartaPegada);
             removerInicio(decks[ChecarListaEscolhida(coluna1)]);
             inserirFim(decks[ChecarListaEscolhida(coluna1)],cartaPegada);
+            return 1;
         }
         if(acao == 3) {
             printf("Escolha uma coluna: ");
             scanf(" %c", &coluna1);
-            acessarInicio(decks[ChecarListaEscolhida(coluna1)], &cartaPegada);
-            acessarPilha(pilhaJ,&cartaPilha);
-            printf("Carta pilha: %d\n", cartaPilha.num);
-            if(cartaPilha.num > cartaPegada.num){
-                printf("Não é possivel pegar essa carta,por favor escolha outra carta");
+            if(ChecarListaEscolhida(coluna1) == 10){
+                printf("Coluna não existente, por favor digite a letra de uma coluna: \n");
                 system("pause");
+                return 0;
             }
-            else{
-                removerInicio(decks[ChecarListaEscolhida(coluna1)]);
-                inserirPilha(pilhaJ,cartaPegada);
+            acessarInicio(decks[ChecarListaEscolhida(coluna1)], &cartaPegada);
+            int pegarPilha = acessarPilha(pilhaJ,&cartaPilha);
+            if(pegarPilha == 1){
+                if(cartaPilha.num > cartaPegada.num || cartaPegada.num == 0 || cartaPegada.num >= 10){
+                    printf("Não é possivel pegar essa carta,por favor escolha outra carta");
+                    system("pause");
+                    return 0;
+                }
+                else{
+                    removerInicio(decks[ChecarListaEscolhida(coluna1)]);
+                    inserirPilha(pilhaJ,cartaPegada);
+                    return 1;
+                }
+            }
+            else {
+                if(cartaPegada.num == 0 || cartaPegada.num >= 10) {
+                    printf("Não é possivel pegar essa carta,por favor escolha outra carta");
+                    system("pause");
+                    return 0;
+                }
+                else{
+                    removerInicio(decks[ChecarListaEscolhida(coluna1)]);
+                    inserirPilha(pilhaJ,cartaPegada);
+                    return 1;
+                }
             }
         }
     }
@@ -204,9 +251,11 @@ void TurnoJoao(Lista *decks[],Pilha *pilhaJ,int *vez){
             system("pause");
         }
         else{
-            ChecarAcao(decks,pilhaJ,acao,vez);
-            turno++;
-            quantAcao--;
+            int condChecarAcao = ChecarAcao(decks,pilhaJ,acao,vez);
+            if(condChecarAcao == 1){
+                turno++;
+                quantAcao--;
+            }
         }
 
         system("cls");
