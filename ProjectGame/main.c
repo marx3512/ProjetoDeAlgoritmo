@@ -306,7 +306,7 @@ int ChecarAcao(Lista *decks[],Pilha *pilhaJ,int acao,int *vez){
         }
         if(acao == 2){
             struct carta cartaEscolhidaGigante[4];
-            printf("Escolha a coluna de onde as cartas vai ser removida: ");
+            printf("Escolha a coluna de onde as cartas vão ser removida: ");
             scanf(" %c", &coluna1);
             printf("Escolha a coluna onde as cartas vão ser inseridas: ");
             scanf(" %c", &coluna2);
@@ -316,20 +316,19 @@ int ChecarAcao(Lista *decks[],Pilha *pilhaJ,int acao,int *vez){
                 return 0;
             }
             else{
-                int posCarta = 0,posDeck;
+                int posCarta = 0;
                 int tamDeck = tamanho(decks[ChecarListaEscolhida(coluna1)]);
-                printf("Tamanho: %d", tamDeck);
-                posDeck = tamDeck - 4;
+                printf("Tamanho: %d \n", tamDeck);
+                tamDeck--;
                 while(posCarta <= 3){
-                    acessarIndice(decks[ChecarListaEscolhida(coluna1)],posDeck,&cartaEscolhidaGigante[posCarta]);
+                    int cond = acessarIndice(decks[ChecarListaEscolhida(coluna1)],tamDeck,&cartaEscolhidaGigante[posCarta]);
                     printf("Carta: %d \n", cartaEscolhidaGigante[posCarta]);
                     removerFim(decks[ChecarListaEscolhida(coluna1)]);
                     inserirFim(decks[ChecarListaEscolhida(coluna2)],cartaEscolhidaGigante[posCarta]);
                     posCarta++;
-                    posDeck++;
+                    tamDeck--;
                 }
-                system("pause");
-                /*return 1;*/
+                return 1;
             }
         }
     }
