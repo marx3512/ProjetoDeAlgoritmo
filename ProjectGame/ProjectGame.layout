@@ -4,33 +4,36 @@
 	<ActiveTarget name="Debug" />
 	<File name="ListaDeck.h" open="1" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="358" topLine="0" />
+			<Cursor1 position="332" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="PilhaJoao.h" open="1" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="30" topLine="0" />
 		</Cursor>
 	</File>
 	<File name="PilhaJoao.c" open="1" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="894" topLine="23" />
+			<Cursor1 position="894" topLine="22" />
 		</Cursor>
 	</File>
 	<File name="ListaDeck.c" open="1" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="596" topLine="0" />
+			<Cursor1 position="1637" topLine="84" />
 		</Cursor>
 		<Folding>
 			<Collapse line="17" />
 			<Collapse line="28" />
-			<Collapse line="47" />
-			<Collapse line="59" />
-			<Collapse line="85" />
-			<Collapse line="101" />
-			<Collapse line="108" />
+			<Collapse line="33" />
+			<Collapse line="48" />
 		</Folding>
 	</File>
 	<File name="main.c" open="1" top="1" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="8678" topLine="62" />
+			<Cursor1 position="12466" topLine="196" />
 		</Cursor>
 		<Folding>
+			<Collapse line="8" />
 			<Collapse line="12" />
 			<Collapse line="19" />
 			<Collapse line="26" />
@@ -39,13 +42,10 @@
 			<Collapse line="47" />
 			<Collapse line="54" />
 			<Collapse line="61" />
+			<Collapse line="95" />
 			<Collapse line="122" />
 			<Collapse line="128" />
+			<Collapse line="140" />
 		</Folding>
-	</File>
-	<File name="PilhaJoao.h" open="1" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="30" topLine="0" />
-		</Cursor>
 	</File>
 </CodeBlocks_layout_file>

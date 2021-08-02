@@ -31,6 +31,21 @@ int tamanho(Lista *lista){
     return lista->qtd;
 }
 
+int inserirInicio(Lista *lista, struct carta nova){
+    if( lista == NULL) return 0;
+    Elemento *novo;
+    novo = (Elemento*)malloc(sizeof(Elemento));
+    novo->info = nova;
+    novo->prox = NULL;
+    if(lista->fim == NULL) {
+        lista->inicio = novo;
+    }
+    else lista->fim->prox = novo;
+    lista->fim = novo;
+    lista->qtd++;
+    return 1;
+}
+
 int inserirFim(Lista *lista, struct carta nova){
     if( lista == NULL) return 0;
     Elemento *novo;
@@ -55,6 +70,30 @@ int removerInicio(Lista *lista){
     lista->qtd--;
     free(aux);
     return 1;
+}
+
+int removerMeio(Lista *lista, int x){
+    if(lista == NULL) return 0;
+    if(lista->qtd == 0) return 0;
+    else if(lista->inicio->info.num == x){
+        Elemento *aux = lista->inicio;
+        lista->inicio->prox = aux->prox;
+        free(aux);
+        return 1;
+    }
+    else{
+        Elemento *ant = lista->inicio;
+        Elemento *aux = lista->inicio->prox;
+        while(aux != NULL && aux->info.num != x){
+            ant = aux;
+            aux = aux->prox;
+        }
+        if(aux == NULL) return 0;
+        ant->prox = aux->prox;
+        free(aux);
+        lista->qtd--;
+        return 1;
+    }
 }
 
 int removerFim(Lista *lista){

@@ -7,9 +7,11 @@ struct carta{
 
 Lista* criar();
 int tamanho(Lista *);
-int inserir(Lista *, struct carta);
+int inserirInicio(Lista *, struct carta);
+int inserirFim(Lista *, struct carta);
 int removerInicio(Lista *);
 int removerFim(Lista *);
+int removerMeio(Lista *, int);
 int acessarIndice(Lista *, int,struct carta *);
 int acessarInicio(Lista *,struct carta *);
 int acessarFim(Lista *,struct carta *);
