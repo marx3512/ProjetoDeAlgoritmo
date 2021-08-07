@@ -109,14 +109,15 @@ int removerFim(Lista *lista){
     else{
         Elemento *aux;
         Elemento *ant;
-        aux = lista->inicio;
-        ant = lista->inicio->prox;
+        aux = lista->inicio->prox;
+        ant = lista->inicio;
         while(aux->prox != NULL){
             ant = aux;
             aux = aux->prox;
         }
         lista->fim = ant;
         ant->prox = aux->prox;
+        lista->qtd--;
         free(aux);
         return 1;
     }

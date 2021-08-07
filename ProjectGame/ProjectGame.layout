@@ -4,38 +4,44 @@
 	<ActiveTarget name="Debug" />
 	<File name="ListaDeck.c" open="1" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="1637" topLine="14" />
+			<Cursor1 position="2806" topLine="27" />
 		</Cursor>
 		<Folding>
 			<Collapse line="17" />
 			<Collapse line="28" />
 			<Collapse line="33" />
+			<Collapse line="48" />
 			<Collapse line="62" />
-			<Collapse line="74" />
 			<Collapse line="98" />
-			<Collapse line="124" />
-			<Collapse line="140" />
-			<Collapse line="147" />
+			<Collapse line="125" />
+			<Collapse line="141" />
+			<Collapse line="148" />
 		</Folding>
-	</File>
-	<File name="ListaDeck.h" open="1" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="211" topLine="0" />
-		</Cursor>
 	</File>
 	<File name="PilhaJoao.c" open="1" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="894" topLine="22" />
+			<Cursor1 position="1067" topLine="0" />
 		</Cursor>
+		<Folding>
+			<Collapse line="12" />
+			<Collapse line="19" />
+			<Collapse line="30" />
+			<Collapse line="43" />
+		</Folding>
 	</File>
 	<File name="PilhaJoao.h" open="1" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="30" topLine="0" />
+			<Cursor1 position="104" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="ListaDeck.h" open="1" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="434" topLine="0" />
 		</Cursor>
 	</File>
 	<File name="main.c" open="1" top="1" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="12901" topLine="195" />
+			<Cursor1 position="4706" topLine="46" />
 		</Cursor>
 		<Folding>
 			<Collapse line="12" />
@@ -47,10 +53,13 @@
 			<Collapse line="54" />
 			<Collapse line="61" />
 			<Collapse line="73" />
-			<Collapse line="95" />
-			<Collapse line="122" />
-			<Collapse line="128" />
-			<Collapse line="140" />
+			<Collapse line="127" />
+			<Collapse line="144" />
+			<Collapse line="157" />
+			<Collapse line="188" />
+			<Collapse line="259" />
+			<Collapse line="297" />
+			<Collapse line="332" />
 		</Folding>
 	</File>
 </CodeBlocks_layout_file>

@@ -4,3 +4,4 @@ Pilha *criarPilha();
 int inserirPilha(Pilha*, struct carta);
 int tamanhoPilha(Pilha*);
 int acessarPilha(Pilha*, struct carta *);
+int removerPilha(Pilha*);

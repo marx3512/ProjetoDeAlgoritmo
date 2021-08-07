@@ -47,3 +47,13 @@ int acessarPilha(Pilha *pilha,struct carta *c){
     *c = (*pilha)->info;
     return 1;
 }
+
+int removerPilha(Pilha *pilha){
+    if(pilha == NULL) return 0;
+    if(*pilha == NULL) return 0;
+    Elemento *aux;
+    aux = *pilha;
+    *pilha = aux->prox;
+    free(aux);
+    return 1;
+}
