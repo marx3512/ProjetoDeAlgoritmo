@@ -72,26 +72,44 @@ int removerInicio(Lista *lista){
     return 1;
 }
 
-int removerMeio(Lista *lista, int x){
+int removerIndice(Lista *lista, int pos){
+    int tam = tamanho(lista);
+    tam--;
     if(lista == NULL) return 0;
-    if(lista->qtd == 0) return 0;
-    else if(lista->inicio->info.num == x){
+    else if(pos < 0) return 0;
+    else if(pos == 0){
+        printf("Em 1");
         Elemento *aux = lista->inicio;
-        lista->inicio->prox = aux->prox;
+        lista->inicio = aux->prox;
+        free(aux);
+        return 1;
+    }
+    else if(pos == tam){
+        printf("Em 2");
+        Elemento *ant = lista->inicio;
+        Elemento *aux = lista->inicio->prox;
+        while(aux != lista->fim){
+            ant = aux;
+            aux = aux->prox;
+        }
+        lista->fim = ant;
         free(aux);
         return 1;
     }
     else{
+        printf("Em 3\n");
+        printf("Pos: %d", pos);
+        int cont = 1;
         Elemento *ant = lista->inicio;
         Elemento *aux = lista->inicio->prox;
-        while(aux != NULL && aux->info.num != x){
+        while(aux != NULL && pos!=cont){
             ant = aux;
             aux = aux->prox;
+            cont++;
         }
         if(aux == NULL) return 0;
         ant->prox = aux->prox;
         free(aux);
-        lista->qtd--;
         return 1;
     }
 }

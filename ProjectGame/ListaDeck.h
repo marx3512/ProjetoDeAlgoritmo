@@ -11,7 +11,7 @@ int inserirInicio(Lista *, struct carta);
 int inserirFim(Lista *, struct carta);
 int removerInicio(Lista *);
 int removerFim(Lista *);
-int removerMeio(Lista *, int);
+int removerIndice(Lista *, int);
 int acessarIndice(Lista *, int,struct carta *);
 int acessarInicio(Lista *,struct carta *);
 int acessarFim(Lista *,struct carta *);

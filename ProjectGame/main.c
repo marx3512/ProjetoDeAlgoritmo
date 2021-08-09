@@ -310,7 +310,7 @@ int ChecarAcao(Lista *decks[],Pilha *pilhaJ,int acao,int *vez,int *tesouros[]){
                 pos--;
                 int cond = acessarIndice(decks[ChecarListaEscolhida(coluna1)],pos,&cartaPegada);
                 printf("Carta: %d \n", cartaPegada.num);
-                system("pause");
+                /*system("pause");*/
                 if(cond == 0){
                     printf("Carta não encontrada\n");
                     system("pause");
@@ -322,12 +322,14 @@ int ChecarAcao(Lista *decks[],Pilha *pilhaJ,int acao,int *vez,int *tesouros[]){
                     return 0;
                 }
                 else if(pos < 0){
-                    printf("Digite um valor maior que 1\n");
+                    printf("Digite um valor maior ou igual a 1\n");
                     system("pause");
                     return 0;
                 }
                 else{
-                    removerMeio(decks[ChecarListaEscolhida(coluna1)],cartaPegada.num);
+                    int teste = removerIndice(decks[ChecarListaEscolhida(coluna1)],pos);
+                    printf("Teste: %d", teste);
+                    system("pause");
                     return 1;
                 }
             }
