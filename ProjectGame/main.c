@@ -155,8 +155,7 @@ int ChecarAcao(Lista *decks[],Pilha *pilhaJ,int acao,int *vez,int *tesouros[]){
     char coluna1,coluna2;
     struct carta cartaPegada,cartaPilha;
     if(*vez == 0){
-        return 1;
-        /*if(acao == 1){
+        if(acao == 1){
             int cond = 1;
             printf("Escolha a coluna de onde a carta vai ser retirada: ");
             scanf(" %c", &coluna1);
@@ -291,7 +290,6 @@ int ChecarAcao(Lista *decks[],Pilha *pilhaJ,int acao,int *vez,int *tesouros[]){
                 }
             }
         }
-        */
     }
 
     else if(*vez == 1){
@@ -309,8 +307,6 @@ int ChecarAcao(Lista *decks[],Pilha *pilhaJ,int acao,int *vez,int *tesouros[]){
                 scanf("%d", &pos);
                 pos--;
                 int cond = acessarIndice(decks[ChecarListaEscolhida(coluna1)],pos,&cartaPegada);
-                printf("Carta: %d \n", cartaPegada.num);
-                /*system("pause");*/
                 if(cond == 0){
                     printf("Carta não encontrada\n");
                     system("pause");
@@ -327,9 +323,7 @@ int ChecarAcao(Lista *decks[],Pilha *pilhaJ,int acao,int *vez,int *tesouros[]){
                     return 0;
                 }
                 else{
-                    int teste = removerIndice(decks[ChecarListaEscolhida(coluna1)],pos);
-                    printf("Teste: %d", teste);
-                    system("pause");
+                    removerIndice(decks[ChecarListaEscolhida(coluna1)],pos);
                     return 1;
                 }
             }
@@ -495,7 +489,9 @@ int main(){
     while(FimDeJogo != 1){
         if(vez == 0) TurnoJoao(decks,pilhaJoao,pontVez,pontQuantTesouros);
         if(vez == 1) TurnoGigante(decks,pilhaJoao,pontVez,pontQuantTesouros);
+        if(quantTesouros[0] == 1 && quantTesouros[1] == 1 && quantTesouros[2] == 1) FimDeJogo = 1;
     }
+    if(FimDeJogo == 1) printf("João venceu!");
 
     return 0;
 }

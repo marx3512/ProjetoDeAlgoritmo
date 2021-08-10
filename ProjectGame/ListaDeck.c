@@ -78,7 +78,6 @@ int removerIndice(Lista *lista, int pos){
     if(lista == NULL) return 0;
     else if(pos < 0) return 0;
     else if(pos == 0){
-        printf("Em 1");
         Elemento *aux = lista->inicio;
         lista->inicio = aux->prox;
         free(aux);
@@ -88,17 +87,16 @@ int removerIndice(Lista *lista, int pos){
         printf("Em 2");
         Elemento *ant = lista->inicio;
         Elemento *aux = lista->inicio->prox;
-        while(aux != lista->fim){
+        while(aux->prox != NULL){
             ant = aux;
             aux = aux->prox;
         }
         lista->fim = ant;
+        ant->prox = NULL;
         free(aux);
         return 1;
     }
     else{
-        printf("Em 3\n");
-        printf("Pos: %d", pos);
         int cont = 1;
         Elemento *ant = lista->inicio;
         Elemento *aux = lista->inicio->prox;
