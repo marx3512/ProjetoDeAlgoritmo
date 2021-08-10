@@ -243,7 +243,7 @@ int ChecarAcao(Lista *decks[],Pilha *pilhaJ,int acao,int *vez,int *tesouros[]){
             }
             else {
                 if(cartaPegada.num == 0 || cartaPegada.num >= 10) {
-                    printf("Não é possivel pegar essa carta,por favor escolha outra cartaAAAAA \n");
+                    printf("Não é possivel pegar essa carta,por favor escolha outra carta\n");
                     system("pause");
                     return 0;
                 }
@@ -266,26 +266,47 @@ int ChecarAcao(Lista *decks[],Pilha *pilhaJ,int acao,int *vez,int *tesouros[]){
             acessarFim(decks[ChecarListaEscolhida(coluna1)], &cartaPegada);
             int pegarPilha = acessarPilha(pilhaJ,&cartaPilha);
             if(pegarPilha == 1){
-                if(cartaPilha.num > cartaPegada.num || cartaPegada.num == 0 || cartaPegada.num >= 10){
-                    printf("Não é possivel pegar essa carta,por favor escolha outra carta \n");
-                    system("pause");
-                    return 0;
+                if(tamanhoPilha(pilhaJ) < 6){
+                    if(cartaPilha.num > cartaPegada.num || cartaPegada.num == 0 || cartaPegada.num >= 10){
+                        printf("Não é possivel pegar uma carta feijão maior que a carta que esta no topo\n");
+                        system("pause");
+                        return 0;
+                    }
+                    else{
+                        removerFim(decks[ChecarListaEscolhida(coluna1)]);
+                        inserirPilha(pilhaJ,cartaPegada);
+                        return 1;
+                    }
                 }
-                else{
-                    removerFim(decks[ChecarListaEscolhida(coluna1)]);
-                    inserirPilha(pilhaJ,cartaPegada);
-                    return 1;
+                else if(tamanhoPilha(pilhaJ) >= 6){
+                    if(cartaPegada.num >= 13){
+                        removerFim(decks[ChecarListaEscolhida(coluna1)]);
+                        inserirPilha(pilhaJ,cartaPegada);
+                        if(cartaPegada.num == 14)*(tesouros + 0) = 1;
+                        else if(cartaPegada.num == 15)*(tesouros + 1) = 1;
+                        else if(cartaPegada.num == 13)*(tesouros + 2) = 1;
+                        while(tamanhoPilha(pilhaJ) != 0){
+                            removerPilha(pilhaJ);
+                        }
+                        return 1;
+                    }
+                    else if(cartaPilha.num > cartaPegada.num || cartaPegada.num == 0 || cartaPegada.num == 10 || cartaPegada.num == 11 || cartaPegada.num == 12){
+                        printf("Não é possivel pegar uma carta feijão maior que a carta que esta no topo\n");
+                        system("pause");
+                        return 0;
+                    }
                 }
             }
             else {
                 if(cartaPegada.num == 0 || cartaPegada.num >= 10) {
-                    printf("Não é possivel pegar essa carta,por favor escolha outra carta \n");
+                    printf("Não é possivel pegar essa carta,por favor escolha outra cartaAAAAA \n");
                     system("pause");
                     return 0;
                 }
                 else{
                     removerFim(decks[ChecarListaEscolhida(coluna1)]);
                     inserirPilha(pilhaJ,cartaPegada);
+
                     return 1;
                 }
             }
@@ -406,7 +427,7 @@ int ChecarAcao(Lista *decks[],Pilha *pilhaJ,int acao,int *vez,int *tesouros[]){
     }
 }
 
-void TurnoJoao(Lista *decks[],Pilha *pilhaJ,int *vez,int *tesouros[]){
+void TurnoJoao(Lista *decks[],Pilha *pilhaJ,int *vez,int *tesouros[],int *fim){
     int acao,quantAcao = 3,turno = 1;
     while(turno <= 3){
         MostrarDeckPilha(decks,pilhaJ,tesouros);
@@ -437,7 +458,7 @@ void TurnoJoao(Lista *decks[],Pilha *pilhaJ,int *vez,int *tesouros[]){
     *vez = 1;
 }
 
-void TurnoGigante(Lista *decks[],Pilha *pilhaJ,int *vez,int *tesouros[]){
+void TurnoGigante(Lista *decks[],Pilha *pilhaJ,int *vez,int *tesouros[],int *fim){
     int acao,turno = 1;
     while(turno <= 1){
         MostrarDeckPilha(decks,pilhaJ,tesouros);
@@ -487,11 +508,10 @@ int main(){
 
 
     while(FimDeJogo != 1){
-        if(vez == 0) TurnoJoao(decks,pilhaJoao,pontVez,pontQuantTesouros);
-        if(vez == 1) TurnoGigante(decks,pilhaJoao,pontVez,pontQuantTesouros);
+        if(vez == 0) TurnoJoao(decks,pilhaJoao,pontVez,pontQuantTesouros,pontFim);
+        if(vez == 1) TurnoGigante(decks,pilhaJoao,pontVez,pontQuantTesouros,pontFim);
         if(quantTesouros[0] == 1 && quantTesouros[1] == 1 && quantTesouros[2] == 1) FimDeJogo = 1;
     }
-    if(FimDeJogo == 1) printf("João venceu!");
 
     return 0;
 }
