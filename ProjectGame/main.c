@@ -431,58 +431,71 @@ void TurnoJoao(Lista *decks[],Pilha *pilhaJ,int *vez,int *tesouros[],int *fim){
     int acao,quantAcao = 3,turno = 1;
     while(turno <= 3){
         MostrarDeckPilha(decks,pilhaJ,tesouros);
-        struct carta acessar;
-
-        printf("\n");
-        printf("Vez de João, você tem %d. Escolha uma opção: \n", quantAcao);
-        printf("1: Mover entre colunas( cartas da frente) \n");
-        printf("2: Mover de trás para frente( mesma coluna ) \n");
-        printf("3: Pegar de trás ( objetivo ) \n");
-        printf("4: Pegar de frente ( objetivo ) \n");
-        printf("-> ");
-        scanf("%d", &acao);
-        if(acao > 4 || acao < 1){
-            printf("Escolha uma opção valida... \n");
-            system("pause");
-        }
-        else{
-            int condChecarAcao = ChecarAcao(decks,pilhaJ,acao,vez,tesouros);
-            if(condChecarAcao == 1){
-                turno++;
-                quantAcao--;
+        if(*(tesouros + 0) == 1 && *(tesouros + 1) == 1 && *(tesouros + 2) == 1) *fim = 1;
+        if(*fim == 0){
+            printf("\n");
+            printf("Vez de João, você tem %d. Escolha uma opção: \n", quantAcao);
+            printf("1: Mover entre colunas( cartas da frente) \n");
+            printf("2: Mover de trás para frente( mesma coluna ) \n");
+            printf("3: Pegar de trás ( objetivo ) \n");
+            printf("4: Pegar de frente ( objetivo ) \n");
+            printf("-> ");
+            scanf("%d", &acao);
+            if(acao > 4 || acao < 1){
+                printf("Escolha uma opção valida... \n");
+                system("pause");
             }
+            else{
+                int condChecarAcao = ChecarAcao(decks,pilhaJ,acao,vez,tesouros);
+                if(condChecarAcao == 1){
+                    turno++;
+                    quantAcao--;
+                }
+            }
+
+            system("cls");
+        }
+        else if(*fim == 1){
+            if(*(tesouros) == 1 && *(tesouros + 1) == 1 && *(tesouros + 2) == 1) printf("\nJoão ganhou!!");
+            break;
         }
 
-        system("cls");
     }
-    *vez = 1;
+    if(*fim == 0)*vez = 1;
 }
 
 void TurnoGigante(Lista *decks[],Pilha *pilhaJ,int *vez,int *tesouros[],int *fim){
     int acao,turno = 1;
     while(turno <= 1){
         MostrarDeckPilha(decks,pilhaJ,tesouros);
-
-        printf("\n");
-        printf("Vez do Gigante, você tem 1 ação. Escolha uma opção... \n");
-        printf("1: Destruir qualquer Carta de Feijão \n");
-        printf("2: Mover entre colunas ( 4 cartas de uma vez ) \n");
-        printf("3: Mover entre colunas duas vezes ( Cartas da frente )\n");
-        printf("-> ");
-        scanf("%d", &acao);
-        if(acao > 3){
-            printf("Escolha uma opção valida... \n");
-            system("pause");
-        }
-        else{
-            int condChecarAcao = ChecarAcao(decks,pilhaJ,acao,vez,tesouros);
-            if(condChecarAcao == 1){
-                turno++;
+        if(*(tesouros + 0) == 1 && *(tesouros + 1) == 1 && *(tesouros + 2) == 1) *fim = 1;
+        if(*fim == 0){
+            printf("\n");
+            printf("Vez do Gigante, você tem 1 ação. Escolha uma opção... \n");
+            printf("1: Destruir qualquer Carta de Feijão \n");
+            printf("2: Mover entre colunas ( 4 cartas de uma vez ) \n");
+            printf("3: Mover entre colunas duas vezes ( Cartas da frente )\n");
+            printf("-> ");
+            scanf("%d", &acao);
+            if(acao > 3){
+                printf("Escolha uma opção valida... \n");
+                system("pause");
             }
+            else{
+                int condChecarAcao = ChecarAcao(decks,pilhaJ,acao,vez,tesouros);
+                if(condChecarAcao == 1){
+                    turno++;
+                }
+            }
+            system("cls");
         }
-        system("cls");
+        else if(*fim == 1){
+            if(*(tesouros) == 1 && *(tesouros + 1) == 1 && *(tesouros + 2) == 1) printf("\nJoão ganhou!!");
+            break;
+        }
+
     }
-    *vez = 0;
+    if(*fim == 0) *vez = 0;
 }
 
 int main(){
@@ -506,11 +519,9 @@ int main(){
     int quantTesouros[] = {0,0,0};
     int *pontQuantTesouros = quantTesouros;
 
-
     while(FimDeJogo != 1){
         if(vez == 0) TurnoJoao(decks,pilhaJoao,pontVez,pontQuantTesouros,pontFim);
         if(vez == 1) TurnoGigante(decks,pilhaJoao,pontVez,pontQuantTesouros,pontFim);
-        if(quantTesouros[0] == 1 && quantTesouros[1] == 1 && quantTesouros[2] == 1) FimDeJogo = 1;
     }
 
     return 0;
