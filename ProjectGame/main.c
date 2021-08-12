@@ -427,11 +427,29 @@ int ChecarAcao(Lista *decks[],Pilha *pilhaJ,int acao,int *vez,int *tesouros[]){
     }
 }
 
+int ChecarPalavraGigante(Lista *decks[]){
+    int pos = 0,quantCartas = 0;
+    struct carta cartaPegada;
+    while(pos <= 4){
+        acessarFim(decks[pos],&cartaPegada);
+        if(cartaPegada.num == 0 || cartaPegada.num == 10 || cartaPegada.num == 11 || cartaPegada.num == 12){
+            pos++;
+            quantCartas++;
+            continue;
+        }
+        else if(pos == 3 && quantCartas < 2) return 0;
+        else pos++;
+    }
+    if(quantCartas >= 4)return 1;
+    else return 0;
+}
+
 void TurnoJoao(Lista *decks[],Pilha *pilhaJ,int *vez,int *tesouros[],int *fim){
     int acao,quantAcao = 3,turno = 1;
     while(turno <= 3){
         MostrarDeckPilha(decks,pilhaJ,tesouros);
         if(*(tesouros + 0) == 1 && *(tesouros + 1) == 1 && *(tesouros + 2) == 1) *fim = 1;
+        if(ChecarPalavraGigante(decks) == 1) *fim = 1;
         if(*fim == 0){
             printf("\n");
             printf("Vez de João, você tem %d. Escolha uma opção: \n", quantAcao);
@@ -457,6 +475,7 @@ void TurnoJoao(Lista *decks[],Pilha *pilhaJ,int *vez,int *tesouros[],int *fim){
         }
         else if(*fim == 1){
             if(*(tesouros) == 1 && *(tesouros + 1) == 1 && *(tesouros + 2) == 1) printf("\nJoão ganhou!!");
+            else if(ChecarPalavraGigante(decks) == 1) printf("\nGigante ganhou!!");
             break;
         }
 
@@ -469,6 +488,7 @@ void TurnoGigante(Lista *decks[],Pilha *pilhaJ,int *vez,int *tesouros[],int *fim
     while(turno <= 1){
         MostrarDeckPilha(decks,pilhaJ,tesouros);
         if(*(tesouros + 0) == 1 && *(tesouros + 1) == 1 && *(tesouros + 2) == 1) *fim = 1;
+        if(ChecarPalavraGigante(decks) == 1) *fim = 1;
         if(*fim == 0){
             printf("\n");
             printf("Vez do Gigante, você tem 1 ação. Escolha uma opção... \n");
@@ -491,6 +511,7 @@ void TurnoGigante(Lista *decks[],Pilha *pilhaJ,int *vez,int *tesouros[],int *fim
         }
         else if(*fim == 1){
             if(*(tesouros) == 1 && *(tesouros + 1) == 1 && *(tesouros + 2) == 1) printf("\nJoão ganhou!!");
+            else if(ChecarPalavraGigante(decks) == 1) printf("\nGigante ganhou!!");
             break;
         }
 
