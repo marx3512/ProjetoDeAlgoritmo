@@ -428,17 +428,28 @@ int ChecarAcao(Lista *decks[],Pilha *pilhaJ,int acao,int *vez,int *tesouros[]){
 }
 
 int ChecarPalavraGigante(Lista *decks[]){
-    int pos = 0,quantCartas = 0;
-    struct carta cartaPegada;
+    int pos = 0,posSegundo = 0,quantCartas = 0;
+    struct carta cartaPegada[5] = {0,0,0,0,0};
     while(pos <= 4){
-        acessarFim(decks[pos],&cartaPegada);
-        if(cartaPegada.num == 0 || cartaPegada.num == 10 || cartaPegada.num == 11 || cartaPegada.num == 12){
-            pos++;
-            quantCartas++;
-            continue;
+        acessarFim(decks[pos],&cartaPegada[pos]);
+        pos++;
+    }
+    pos = 0;
+    while(pos <= 4){
+        if(cartaPegada[pos].num == 0 || cartaPegada[pos].num == 10 || cartaPegada[pos].num == 11 || cartaPegada[pos].num == 12){
+            while(posSegundo <= 4){
+                if(pos == posSegundo) posSegundo++;
+                if(cartaPegada[pos].num == cartaPegada[posSegundo].num) return 0;
+                else posSegundo++;
+            }
+            if(cartaPegada[pos].num == 0) quantCartas++;
+            else if(cartaPegada[pos].num == 10) quantCartas++;
+            else if(cartaPegada[pos].num == 11) quantCartas++;
+            else if(cartaPegada[pos].num == 12) quantCartas++;
         }
-        else if(pos == 3 && quantCartas < 2) return 0;
-        else pos++;
+        else if(quantCartas > 0) quantCartas--;
+        printf("QuantCartas: %d\n", quantCartas);
+        pos++;
     }
     if(quantCartas >= 4)return 1;
     else return 0;
