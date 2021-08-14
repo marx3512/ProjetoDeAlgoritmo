@@ -439,20 +439,21 @@ int ChecarPalavraGigante(Lista *decks[]){
         if(cartaPegada[pos].num == 0 || cartaPegada[pos].num == 10 || cartaPegada[pos].num == 11 || cartaPegada[pos].num == 12){
             while(posSegundo <= 4){
                 if(pos == posSegundo) posSegundo++;
-                if(cartaPegada[pos].num == cartaPegada[posSegundo].num) return 0;
+                if(cartaPegada[pos].num == cartaPegada[posSegundo].num){
+                    printf("Igual \n");
+                    return 0;
+                }
                 else posSegundo++;
             }
-            if(cartaPegada[pos].num == 0) quantCartas++;
-            else if(cartaPegada[pos].num == 10) quantCartas++;
-            else if(cartaPegada[pos].num == 11) quantCartas++;
-            else if(cartaPegada[pos].num == 12) quantCartas++;
+            quantCartas++;
+            printf("Quantidade cartas: %d \n", quantCartas);
+            pos++;
         }
-        else if(quantCartas > 0) quantCartas--;
-        printf("QuantCartas: %d\n", quantCartas);
+        printf("Quantidade cartas: %d \n", quantCartas);
         pos++;
     }
-    if(quantCartas >= 4)return 1;
-    else return 0;
+    if(quantCartas >= 4) return 1;
+    return 0;
 }
 
 void TurnoJoao(Lista *decks[],Pilha *pilhaJ,int *vez,int *tesouros[],int *fim){
