@@ -436,6 +436,7 @@ int ChecarPalavraGigante(Lista *decks[]){
     }
     pos = 0;
     while(pos <= 4){
+        printf("Carta pegada: %d \n", cartaPegada[pos].num);
         if(cartaPegada[pos].num == 0 || cartaPegada[pos].num == 10 || cartaPegada[pos].num == 11 || cartaPegada[pos].num == 12){
             while(posSegundo <= 4){
                 if(pos == posSegundo) posSegundo++;
@@ -446,11 +447,10 @@ int ChecarPalavraGigante(Lista *decks[]){
                 else posSegundo++;
             }
             quantCartas++;
-            printf("Quantidade cartas: %d \n", quantCartas);
+            printf("Certa Quantidade cartas: %d \n", quantCartas);
             pos++;
         }
-        printf("Quantidade cartas: %d \n", quantCartas);
-        pos++;
+        else pos++;
     }
     if(quantCartas >= 4) return 1;
     return 0;
