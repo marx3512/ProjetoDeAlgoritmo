@@ -568,7 +568,7 @@ int main(){
     Pilha *pilhaJoao;
     pilhaJoao = criarPilha();
     /*quantTesouros[0] = Harpa,quantTesouros[1] = Ovo,quantTesouros[2] = Ganso*/
-    int quantTesouros[] = {0,0,1};
+    int quantTesouros[] = {0,0,0};
     int *pontQuantTesouros = quantTesouros;
 
     while(FimDeJogo != 1){
