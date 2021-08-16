@@ -224,11 +224,32 @@ int ChecarAcao(Lista *decks[],Pilha *pilhaJ,int acao,int *vez,int *tesouros[]){
                 }
                 else if(tamanhoPilha(pilhaJ) >= 6){
                     if(cartaPegada.num >= 13){
+                        if(cartaPegada.num == 14){
+                            if(tesouros[0] == 0) *(tesouros + 0) = 1;
+                            else{
+                                printf("Você ja pego uma carta do tipo harpa \n");
+                                system("pause");
+                                return 0;
+                            }
+                        }
+                        if(cartaPegada.num == 15){
+                            if(tesouros[1] == 0) *(tesouros + 1) = 1;
+                            else{
+                                printf("Você ja pego uma carta do tipo ovo \n");
+                                system("pause");
+                                return 0;
+                            }
+                        }
+                        if(cartaPegada.num == 13){
+                            if(tesouros[2] == 0) *(tesouros + 2) = 1;
+                            else{
+                                printf("Você ja pego uma carta do tipo ganso \n");
+                                system("pause");
+                                return 0;
+                            }
+                        }
                         removerInicio(decks[ChecarListaEscolhida(coluna1)]);
                         inserirPilha(pilhaJ,cartaPegada);
-                        if(cartaPegada.num == 14)*(tesouros + 0) = 1;
-                        else if(cartaPegada.num == 15)*(tesouros + 1) = 1;
-                        else if(cartaPegada.num == 13)*(tesouros + 2) = 1;
                         while(tamanhoPilha(pilhaJ) != 0){
                             removerPilha(pilhaJ);
                         }
@@ -436,7 +457,6 @@ int ChecarPalavraGigante(Lista *decks[]){
     }
     pos = 0;
     while(pos <= 4){
-        printf("Carta pegada: %d \n", cartaPegada[pos].num);
         if(cartaPegada[pos].num == 0 || cartaPegada[pos].num == 10 || cartaPegada[pos].num == 11 || cartaPegada[pos].num == 12){
             while(posSegundo <= 4){
                 if(pos == posSegundo) posSegundo++;
@@ -447,7 +467,6 @@ int ChecarPalavraGigante(Lista *decks[]){
                 else posSegundo++;
             }
             quantCartas++;
-            printf("Certa Quantidade cartas: %d \n", quantCartas);
             pos++;
         }
         else pos++;
@@ -549,7 +568,7 @@ int main(){
     Pilha *pilhaJoao;
     pilhaJoao = criarPilha();
     /*quantTesouros[0] = Harpa,quantTesouros[1] = Ovo,quantTesouros[2] = Ganso*/
-    int quantTesouros[] = {0,0,0};
+    int quantTesouros[] = {0,0,1};
     int *pontQuantTesouros = quantTesouros;
 
     while(FimDeJogo != 1){
