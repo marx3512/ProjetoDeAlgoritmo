@@ -179,11 +179,20 @@ int ChecarAcao(Lista *decks[],Pilha *pilhaJ,int acao,int *vez,int *tesouros[]){
             }
 
             if(cond == 1){
-                acessarFim(decks[ChecarListaEscolhida(coluna1)],&cartaPegada);
-                removerFim(decks[ChecarListaEscolhida(coluna1)]);
-                inserirFim(decks[ChecarListaEscolhida(coluna2)],cartaPegada);
-                cond = 0;
-                return 1;
+                int verificar = acessarFim(decks[ChecarListaEscolhida(coluna1)],&cartaPegada);
+                printf("%d \n", verificar);
+                system("pause");
+                if(verificar == 0){
+                    printf("Não foi possivel encontrar cartas nessa coluna.. \n");
+                    system("pause");
+                    return 0;
+                }
+                else{
+                    removerFim(decks[ChecarListaEscolhida(coluna1)]);
+                    inserirFim(decks[ChecarListaEscolhida(coluna2)],cartaPegada);
+                    cond = 0;
+                    return 1;
+                }
             }
         }
         if(acao == 2){
@@ -320,7 +329,7 @@ int ChecarAcao(Lista *decks[],Pilha *pilhaJ,int acao,int *vez,int *tesouros[]){
             }
             else {
                 if(cartaPegada.num == 0 || cartaPegada.num >= 10) {
-                    printf("Não é possivel pegar essa carta,por favor escolha outra cartaAAAAA \n");
+                    printf("Não é possivel pegar essa carta,por favor escolha outra carta \n");
                     system("pause");
                     return 0;
                 }
@@ -460,10 +469,7 @@ int ChecarPalavraGigante(Lista *decks[]){
         if(cartaPegada[pos].num == 0 || cartaPegada[pos].num == 10 || cartaPegada[pos].num == 11 || cartaPegada[pos].num == 12){
             while(posSegundo <= 4){
                 if(pos == posSegundo) posSegundo++;
-                if(cartaPegada[pos].num == cartaPegada[posSegundo].num){
-                    printf("Igual \n");
-                    return 0;
-                }
+                if(cartaPegada[pos].num == cartaPegada[posSegundo].num)return 0;
                 else posSegundo++;
             }
             quantCartas++;
@@ -490,7 +496,8 @@ void TurnoJoao(Lista *decks[],Pilha *pilhaJ,int *vez,int *tesouros[],int *fim){
             printf("4: Pegar de frente ( objetivo ) \n");
             printf("-> ");
             scanf("%d", &acao);
-            if(acao > 4 || acao < 1){
+            while( getchar() != '\n' );
+            if(acao != 1 && acao != 2 && acao != 3 && acao != 4){
                 printf("Escolha uma opção valida... \n");
                 system("pause");
             }
@@ -528,6 +535,7 @@ void TurnoGigante(Lista *decks[],Pilha *pilhaJ,int *vez,int *tesouros[],int *fim
             printf("3: Mover entre colunas duas vezes ( Cartas da frente )\n");
             printf("-> ");
             scanf("%d", &acao);
+            while( getchar() != '\n' );
             if(acao > 3){
                 printf("Escolha uma opção valida... \n");
                 system("pause");
