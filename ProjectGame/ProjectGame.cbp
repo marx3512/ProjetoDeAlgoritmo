@@ -31,6 +31,7 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
+		<Unit filename="Codigos.h" />
 		<Unit filename="ListaDeck.c">
 			<Option compilerVar="CC" />
 		</Unit>
