@@ -312,7 +312,7 @@ int ChecarAcao(Lista *decks[],Pilha *pilhaJ,int acao,int *vez,int *tesouros[]){
                         return 1;
                     }
                     else if(cartaPilha.num > cartaPegada.num || cartaPegada.num == 0 || cartaPegada.num == 10 || cartaPegada.num == 11 || cartaPegada.num == 12){
-                        printf("Não é possivel pegar uma carta feijão maior que a carta que esta no topo\n");
+                        printf("Não é possivel pegar uma carta feijão menor que a carta que esta no topo\n");
                         system("pause");
                         return 0;
                     }
@@ -465,7 +465,7 @@ int ChecarPalavraGigante(Lista *decks[]){
         if(cartaPegada[pos].num == 0 || cartaPegada[pos].num == 10 || cartaPegada[pos].num == 11 || cartaPegada[pos].num == 12){
             while(posSegundo <= 4){
                 if(pos == posSegundo) posSegundo++;
-                if(cartaPegada[pos].num == cartaPegada[posSegundo].num)return 0;
+                else if(cartaPegada[pos].num == cartaPegada[posSegundo].num)return 0;
                 else posSegundo++;
             }
             quantCartas++;
